@@ -1,0 +1,6 @@
+project: aho-corasick
+target: searching
+duration: 90
+
+cmds:
+    - cmd: /searching

@@ -1,0 +1,6 @@
+project: aho-corasick
+target: find-one
+duration: 90
+
+cmds:
+    - cmd: /find_one

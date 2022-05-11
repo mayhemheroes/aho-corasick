@@ -1,0 +1,6 @@
+project: aho-corasick
+target: leftmost
+duration: 90
+
+cmds:
+    - cmd: /leftmost
