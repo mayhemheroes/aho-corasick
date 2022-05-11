@@ -1,0 +1,6 @@
+project: aho-corasick
+target: replacing
+duration: 90
+
+cmds:
+    - cmd: /replacing

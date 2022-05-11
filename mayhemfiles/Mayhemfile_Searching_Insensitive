@@ -1,0 +1,6 @@
+project: aho-corasick
+target: searching-insensitive
+duration: 90
+
+cmds:
+    - cmd: /searching_insensitive
