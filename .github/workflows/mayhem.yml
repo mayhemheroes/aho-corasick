@@ -22,10 +22,13 @@ jobs:
             triplet: x64-linux
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4.0.0
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4.1.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -33,12 +36,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6.0.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7.1.0
         with:
           context: .
           file: Dockerfile
@@ -47,31 +50,31 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Start analysis of Find One
-        uses: ForAllSecure/mcode-action@long-runs
+        uses: forallsecure/mcode-action@long-runs
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --file mayhemfiles/Mayhemfile_Find_One --image ${{ steps.meta.outputs.tags }}
 
       - name: Start analysis of Leftmost
-        uses: ForAllSecure/mcode-action@long-runs
+        uses: forallsecure/mcode-action@long-runs
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --file mayhemfiles/Mayhemfile_Leftmost --image ${{ steps.meta.outputs.tags }}
 
       - name: Start analysis of Replacing
-        uses: ForAllSecure/mcode-action@long-runs
+        uses: forallsecure/mcode-action@long-runs
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --file mayhemfiles/Mayhemfile_Replacing --image ${{ steps.meta.outputs.tags }}
 
       - name: Start analysis of Searching Insensitive
-        uses: ForAllSecure/mcode-action@long-runs
+        uses: forallsecure/mcode-action@long-runs
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --file mayhemfiles/Mayhemfile_Searching_Insensitive --image ${{ steps.meta.outputs.tags }}
 
       - name: Start analysis of Searching
-        uses: ForAllSecure/mcode-action@long-runs
+        uses: forallsecure/mcode-action@long-runs
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --file mayhemfiles/Mayhemfile_Searching --image ${{ steps.meta.outputs.tags }}

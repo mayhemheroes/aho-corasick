@@ -19,5 +19,35 @@ path = "fuzz-targets/fuzz_find.rs"
 test = false
 doc = false
 
+[[bin]]
+name = "find_one"
+path = "fuzz-targets/find_one.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "leftmost"
+path = "fuzz-targets/leftmost.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "replacing"
+path = "fuzz-targets/replacing.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "searching"
+path = "fuzz-targets/searching.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "searching_insensitive"
+path = "fuzz-targets/searching_insensitive.rs"
+test = false
+doc = false
+
 [package.metadata]
 cargo-fuzz = true
